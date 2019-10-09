@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el : "#example",
+        data : { a: 1 },
+        //钩子函数，实例被创建后执行
+        //类似的还有mounted、updated 和 destroyed 等
+        created : function () {
+            console.log("实例被创建！ " + this.a)
+        }
+    })
+
+    // $watch 是一个实例方法
+    vm.$watch('a', function (newValue, oldValue) {
+        // 这个回调将在 `vm.a` 改变后调用
+        console.log("a被修改！新值：" + newValue + ",旧值：" + oldValue)
+    })
+
+    vm.a = 2;
+</script>
+</body>
+</html>
