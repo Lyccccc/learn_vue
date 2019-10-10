@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--模板语法-->
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--<script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>-->
+</head>
+<body>
+<div id="app">
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <!--显示原始html-->
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+
+    <p>支持js表达式：</p>
+    <p>{{ number + 1 }}</p>
+    <p>{{ ok ? "YES" : "NO"}}</p>
+    <p>{{ message.split("").reverse().join("") }}</p>
+
+    <!--v-bind 指令可以用于响应式地更新 HTML 特性-->
+    <a v-bind:href="url">页面跳转</a><br/>
+    <!--v-on 可以用于监听事件-->
+    <a v-on:click="doSomething">监听事件</a><br/>
+    <!--动态参数，2.6.0新增  注意不要使用大写字符命名-->
+    <a v-on:[eventname]="doSomething">监听事件（动态参数）</a><br/>
+
+    <!--缩写：为 v-bind 和 v-on 两个常用指令提供了缩写-->
+    <!--v-bind-->
+    <a :href="url">页面跳转（v-bind缩写）</a><br/>
+    <!--v-on-->
+    <a @click="doSomething">监听事件（v-on缩写）</a><br/>
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el : "#app",
+        data : {
+            rawHtml : "<span style=\"color: red\">This should be red.</span>",
+            number : 1,
+            ok : true,
+            message : "hello world",
+            url : "https://www.baidu.com",
+            eventname : "click"
+        },
+        methods:{
+            doSomething : function(){
+                alert("doSomething");
+            }
+        }
+
+    })
+</script>
+</body>
+</html>
